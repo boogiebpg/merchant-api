@@ -29,7 +29,13 @@ gem 'stimulus-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
+gem 'bcrypt', '~> 3.1.18'
+gem 'bootstrap', '~> 5.2.3'
+gem 'jquery-rails'
+gem 'jwt', '~> 2.5.0'
 gem 'rubocop'
+gem 'simple_command', '~> 1.0.1'
+gem 'slim', '~> 4.1.0'
 gem 'whenever', require: false
 
 # Use Redis adapter to run Action Cable in production
@@ -56,9 +62,9 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  gem "rspec-rails", '~> 6.0.1'
   gem 'factory_bot_rails', '~> 6.2.0'
   gem 'faker', '~> 3.0.0'
+  gem 'rspec-rails', '~> 6.0.1'
 end
 
 group :development do
@@ -76,5 +82,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 5.0'
   gem 'webdrivers'
 end

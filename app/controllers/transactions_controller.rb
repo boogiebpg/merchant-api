@@ -1,14 +1,24 @@
+# frozen_string_literal: true
+
 class TransactionsController < ApplicationController
+  include TransactionsHelper
+
+  before_action :authenticate_request, only: :create
+
   def create
     respond_to do |format|
       format.json do
         new_transaction = TransactionCreator.call(params[:transaction], :json)
-        render json: { transaction: new_transaction }
+        render_response(new_transaction, :json)
       end
       format.xml do
         new_transaction = TransactionCreator.call(params[:transaction], :xml)
-        render xml: new_transaction.attributes.to_xml(root: "transaction")
+        render_response(new_transaction, :xml)
       end
     end
+  end
+
+  def index
+    @transactions = Transaction.all
   end
 end
