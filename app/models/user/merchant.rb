@@ -5,4 +5,6 @@ class User::Merchant < User
     active: 0,
     inactive: 1
   }.freeze
+
+  scope :active, -> { where(status: STATUSES[:active]) }
 end

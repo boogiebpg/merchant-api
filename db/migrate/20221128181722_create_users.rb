@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :email, index: { unique: true }
       t.integer :status
       t.decimal :total_transaction_sum, precision: 8, scale: 2
+      t.string :password_digest
       t.string :type
 
       t.timestamps

@@ -2,8 +2,8 @@
 
 class TransactionMerchantStatusValidator < ActiveModel::Validator
   def validate(record)
-    unless record.user.status == User::Merchant::STATUSES[:active]
-      record.errors.add :amount, 'Merchant should be active!'
-    end
+    return if record.user&.status == User::Merchant::STATUSES[:active]
+
+    record.errors.add :user, 'Merchant should be active!'
   end
 end

@@ -10,6 +10,7 @@ class CreateTransactions < ActiveRecord::Migration[7.0]
       t.string :customer_phone
       t.string :type
       t.references :user
+      t.references :transaction
 
       t.timestamps
     end
