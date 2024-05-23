@@ -39,13 +39,13 @@ To be able to use our API we need to create auth key with our first request:
     POST http://localhost:3000/authenticate
 
 Params:
-    email: piter@email.com
-    password: 123
+`email: piter@email.com
+password: 123`
 
 Response example:
-	{
-		"auth_token": "NewToken"
-	}
+`{
+	"auth_token": "NewToken"
+}`
 
 
 Now we can create new transaction:
@@ -53,33 +53,33 @@ Now we can create new transaction:
 	POST http://localhost:3000/transactions
 
 Headers:
-	Content-Type: application/json
-	Authorization: Bearer NewToken
+`Content-Type: application/json
+Authorization: Bearer NewToken`
 
 Body:
-	{
-		"transaction": {
-			"customer_email":"piter@email.com",
-			"customer_phone":"84056723",
-			"uuid":"ae9479e2-52a6-466b-97a7-98ec06f264e6",
-	        "amount":50,
-			"status":0,
-			"type":"Transaction::Authorize"
-		}
+`{
+	"transaction": {
+		"customer_email":"piter@email.com",
+		"customer_phone":"84056723",
+		"uuid":"ae9479e2-52a6-466b-97a7-98ec06f264e6",
+        "amount":50,
+		"status":0,
+		"type":"Transaction::Authorize"
 	}
+}`
 
 Response:
-	{
-		"transaction": {
-			"id": 5,
-			"uuid": "ae9479e2-52a6-466b-97a7-98ec06f264e6",
-			"amount": "50.0",
-			"status": "approved",
-			"customer_email": "piter@email.com",
-			"customer_phone": "84056723",
-			"user_id": 1,
-			"transaction_id": null,
-			"created_at": "2024-05-23T14:25:46.258Z",
-			"updated_at": "2024-05-23T14:25:46.258Z"
-		}
+`{
+	"transaction": {
+		"id": 5,
+		"uuid": "ae9479e2-52a6-466b-97a7-98ec06f264e6",
+		"amount": "50.0",
+		"status": "approved",
+		"customer_email": "piter@email.com",
+		"customer_phone": "84056723",
+		"user_id": 1,
+		"transaction_id": null,
+		"created_at": "2024-05-23T14:25:46.258Z",
+		"updated_at": "2024-05-23T14:25:46.258Z"
 	}
+}`
