@@ -57,29 +57,29 @@ Headers:
 Authorization: Bearer NewToken`
 
 Body:
-`{
-	"transaction": {
-		"customer_email":"piter@email.com",
-		"customer_phone":"84056723",
-		"uuid":"ae9479e2-52a6-466b-97a7-98ec06f264e6",
-        "amount":50,
-		"status":0,
-		"type":"Transaction::Authorize"
-	}
-}`
+	`{
+		"transaction": {
+			"customer_email":"piter@email.com",
+			"customer_phone":"84056723",
+			"uuid":"ae9479e2-52a6-466b-97a7-98ec06f264e6",
+	        "amount":50,
+			"status":0,
+			"type":"Transaction::Authorize"
+		}
+	}`
 
 Response:
-`{
-	"transaction": {
-		"id": 5,
-		"uuid": "ae9479e2-52a6-466b-97a7-98ec06f264e6",
-		"amount": "50.0",
-		"status": "approved",
-		"customer_email": "piter@email.com",
-		"customer_phone": "84056723",
-		"user_id": 1,
-		"transaction_id": null,
-		"created_at": "2024-05-23T14:25:46.258Z",
-		"updated_at": "2024-05-23T14:25:46.258Z"
-	}
-}`
+	`{
+		"transaction": {
+			"id": 5,
+			"uuid": "ae9479e2-52a6-466b-97a7-98ec06f264e6",
+			"amount": "50.0",
+			"status": "approved",
+			"customer_email": "piter@email.com",
+			"customer_phone": "84056723",
+			"user_id": 1,
+			"transaction_id": null,
+			"created_at": "2024-05-23T14:25:46.258Z",
+			"updated_at": "2024-05-23T14:25:46.258Z"
+		}
+	}`
