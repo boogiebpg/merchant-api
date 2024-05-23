@@ -69,7 +69,8 @@ Body:
 	}`
 
 Response:
-	`{
+`
+	{
 		"transaction": {
 			"id": 5,
 			"uuid": "ae9479e2-52a6-466b-97a7-98ec06f264e6",
@@ -82,4 +83,5 @@ Response:
 			"created_at": "2024-05-23T14:25:46.258Z",
 			"updated_at": "2024-05-23T14:25:46.258Z"
 		}
-	}`
+	}
+`
