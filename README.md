@@ -57,7 +57,8 @@ Headers:
 Authorization: Bearer NewToken`
 
 Body:
-	`{
+```
+	{
 		"transaction": {
 			"customer_email":"piter@email.com",
 			"customer_phone":"84056723",
@@ -66,10 +67,11 @@ Body:
 			"status":0,
 			"type":"Transaction::Authorize"
 		}
-	}`
+	}
+```
 
 Response:
-`
+```
 	{
 		"transaction": {
 			"id": 5,
@@ -84,4 +86,4 @@ Response:
 			"updated_at": "2024-05-23T14:25:46.258Z"
 		}
 	}
-`
+```
