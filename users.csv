@@ -1,3 +1,3 @@
-Name,Description,Email,Status,TotalTransactionSum,Type
-Piter,Just regular merchant,piter@email.com,active,0,Merchant
-Alice,Super Admin,alice@email.com,active,0,Admin
+Name,Description,Email,Password,Status,TotalTransactionSum,Type
+Piter,Just regular merchant,piter@email.com,123,active,0,Merchant
+Alice,Super Admin,alice@email.com,123,active,0,Admin

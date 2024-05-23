@@ -11,5 +11,9 @@ html
     == javascript_importmap_tags
 
     body
-    == render 'shared/flashes'
-    == yield
+    .container
+      div class="row justify-content-center"
+      == link_to 'Merchants', merchants_path
+      == link_to 'Transactions', root_path
+      == render 'shared/flashes'
+      == yield

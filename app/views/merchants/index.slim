@@ -1,31 +1,28 @@
-.container
-  div class="row justify-content-center"
-    h4 class="mt-4 display-4"
-      'Merchants List
-  == link_to 'Create Merchant', new_merchant_path
-  - if @merchants.present?
-    div class="row justify-content-center"
-      table class="table table-bordered"
-        thead
-          tr
-            th scope="col" Name
-            th scope="col" Email
-            th scope="col" Description
-            th scope="col" colspan="3" Action
-        tbody
-          - @merchants.each do |merchant|
-            tr
-              td == merchant.name
-              td == merchant.email
-              td == merchant.description
-              td == link_to 'Show', merchant_path(merchant.id)
-              td == link_to 'Edit', edit_merchant_path(merchant.id)
-              td
-                == link_to 'Delete',
-                merchant_path(merchant.id),
-                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
-  - else
-    div class="p-3 mb-2 bg-light text-dark"
-      span class="text-info font-weight-bold"
-        'Welcome!
-      'Create first Merchant
+h4 class="mt-4 display-4"
+  'Merchants List
+== link_to 'Create Merchant', new_merchant_path
+- if @merchants.present?
+  table class="table table-bordered"
+    thead
+      tr
+        th scope="col" Name
+        th scope="col" Email
+        th scope="col" Description
+        th scope="col" colspan="3" Action
+    tbody
+      - @merchants.each do |merchant|
+        tr
+          td == merchant.name
+          td == merchant.email
+          td == merchant.description
+          td == link_to 'Show', merchant_path(merchant.id)
+          td == link_to 'Edit', edit_merchant_path(merchant.id)
+          td
+            == link_to 'Delete',
+            merchant_path(merchant.id),
+            data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}
+- else
+  div class="p-3 mb-2 bg-light text-dark"
+    span class="text-info font-weight-bold"
+      'Welcome!
+    'Create first Merchant

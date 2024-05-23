@@ -25,7 +25,7 @@ RSpec.describe User, type: :service do
 
     context 'when payload is incorrect' do
       context 'when json format provided' do
-        let(:incorrect_json_payload) { { key: 'value' }.to_json }
+        let(:incorrect_json_payload) { ActionController::Parameters.new(key: 'value').permit! }
         let(:result) { TransactionCreator.call(incorrect_json_payload, :json) }
 
         it "doesn't raise an error" do
@@ -81,10 +81,9 @@ RSpec.describe User, type: :service do
       end
       context 'when json format provided' do
         let(:transaction_json_data) do
-          authorize_transaction
-            .attributes
-            .slice(*correct_attrs)
-            .to_json
+          ActionController::Parameters.new(
+            { transaction: authorize_transaction.attributes.slice(*correct_attrs) }
+            ).permit!
         end
 
         context "when new transaction doesn't have a parent" do
@@ -105,27 +104,36 @@ RSpec.describe User, type: :service do
             build(:charge_transaction)
           end
           let(:transaction_with_incorrect_parent_json) do
-            authorize_transaction
-              .attributes
-              .slice(*correct_attrs)
-              .merge(transaction_id: -1)
-              .to_json
+            ActionController::Parameters.new(
+              {
+                transaction: authorize_transaction
+                              .attributes
+                              .slice(*correct_attrs)
+                              .merge(transaction_id: -1)
+              }
+            ).permit!
           end
 
           let(:transaction_with_correct_parent_json) do
-            charge_transaction
-              .attributes
-              .slice(*correct_attrs)
-              .merge(transaction_id: parent_authorize_transaction.id)
-              .to_json
+            ActionController::Parameters.new(
+              {
+                transaction: charge_transaction
+                              .attributes
+                              .slice(*correct_attrs)
+                              .merge(transaction_id: parent_authorize_transaction.id)
+              }
+            ).permit!
           end
 
           let(:transaction_with_incorrect_parents_status_json) do
-            charge_transaction
-              .attributes
-              .slice(*correct_attrs)
-              .merge(transaction_id: parent_authorize_transaction_with_wrong_status.id)
-              .to_json
+            ActionController::Parameters.new(
+              {
+                transaction: charge_transaction
+                               .attributes
+                               .slice(*correct_attrs)
+                               .merge(transaction_id: parent_authorize_transaction_with_wrong_status.id)
+              }
+            ).permit!
           end
 
           context 'when parent is incorrect' do

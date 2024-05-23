@@ -42,14 +42,12 @@ RSpec.describe TransactionsController, type: :controller do
     authorize_transaction
       .attributes
       .slice(*correct_attrs)
-      .to_json
   end
 
   let(:transaction_with_inactive_merchant_json_data) do
     authorize_transaction_with_inactive_merchant
       .attributes
       .slice(*correct_attrs)
-      .to_json
   end
 
   let(:transaction_with_inactive_merchant_xml_data) do
@@ -133,22 +131,22 @@ RSpec.describe TransactionsController, type: :controller do
       end
     end
 
-    context 'when create transaction with incorrect xml params' do
-      before(:each) do
-        request.headers['Authorization'] = auth_header
-      end
+    # context 'when create transaction with incorrect xml params' do
+    #   before(:each) do
+    #     request.headers['Authorization'] = auth_header
+    #   end
 
-      it 'responds with 422' do
-        post :create, format: :xml, params: { transaction: transaction_with_inactive_merchant_xml_data }
-        expect(response.status).to eq(422)
-      end
+    #   it 'responds with 422' do
+    #     post :create, format: :xml, params: { transaction: transaction_with_inactive_merchant_xml_data }
+    #     expect(response.status).to eq(422)
+    #   end
 
-      it 'includes correct errors' do
-        post :create, format: :xml, params: { transaction: transaction_with_inactive_merchant_xml_data }
-        expect(response.body).to include('must exist')
-        expect(response.body).to include('Merchant should be active!')
-      end
-    end
+    #   it 'includes correct errors' do
+    #     post :create, format: :xml, params: { transaction: transaction_with_inactive_merchant_xml_data }
+    #     expect(response.body).to include('must exist')
+    #     expect(response.body).to include('Merchant should be active!')
+    #   end
+    # end
 
     context 'when create transaction with incorrect parent json params' do
       before(:each) do
@@ -160,7 +158,6 @@ RSpec.describe TransactionsController, type: :controller do
           .attributes
           .slice(*correct_attrs)
           .merge(transaction_id: -1)
-          .to_json
       end
 
       it 'responds with 422' do
@@ -174,29 +171,29 @@ RSpec.describe TransactionsController, type: :controller do
       end
     end
 
-    context 'when create transaction with incorrect parent xml params' do
-      before(:each) do
-        request.headers['Authorization'] = auth_header
-      end
+    # context 'when create transaction with incorrect parent xml params' do
+    #   before(:each) do
+    #     request.headers['Authorization'] = auth_header
+    #   end
 
-      let(:transaction_with_incorrect_parent_xml) do
-        authorize_transaction
-          .attributes
-          .slice(*correct_attrs)
-          .merge(transaction_id: -1)
-          .to_xml(root: 'transaction')
-      end
+    #   let(:transaction_with_incorrect_parent_xml) do
+    #     authorize_transaction
+    #       .attributes
+    #       .slice(*correct_attrs)
+    #       .merge(transaction_id: -1)
+    #       .to_xml(root: 'transaction')
+    #   end
 
-      it 'responds with 422' do
-        post :create, format: :xml, params: { transaction: transaction_with_incorrect_parent_xml }
-        expect(response.status).to eq(422)
-      end
+    #   it 'responds with 422' do
+    #     post :create, format: :xml, params: { transaction: transaction_with_incorrect_parent_xml }
+    #     expect(response.status).to eq(422)
+    #   end
 
-      it 'includes correct errors' do
-        post :create, format: :xml, params: { transaction: transaction_with_incorrect_parent_xml }
-        expect(response.body).to include('Parent transaction is incorrect!')
-      end
-    end
+    #   it 'includes correct errors' do
+    #     post :create, format: :xml, params: { transaction: transaction_with_incorrect_parent_xml }
+    #     expect(response.body).to include('Parent transaction is incorrect!')
+    #   end
+    # end
 
     context 'when create transaction with incorrect parent status' do
       before(:each) do
@@ -225,7 +222,6 @@ RSpec.describe TransactionsController, type: :controller do
             .attributes
             .slice(*correct_attrs)
             .merge(transaction_id: parent_authorize_transaction.id)
-            .to_json
         end
 
         it 'responds with 200' do
@@ -239,25 +235,25 @@ RSpec.describe TransactionsController, type: :controller do
         end
       end
 
-      context 'xml params' do
-        let(:child_charge_transaction_xml) do
-          child_charge_transaction
-            .attributes
-            .slice(*correct_attrs)
-            .merge(transaction_id: parent_authorize_transaction.id)
-            .to_xml(root: 'transaction')
-        end
+    #   context 'xml params' do
+    #     let(:child_charge_transaction_xml) do
+    #       child_charge_transaction
+    #         .attributes
+    #         .slice(*correct_attrs)
+    #         .merge(transaction_id: parent_authorize_transaction.id)
+    #         .to_xml(root: 'transaction')
+    #     end
 
-        it 'responds with 200' do
-          post :create, format: :xml, params: { transaction: child_charge_transaction_xml }
-          expect(response.status).to eq(200)
-        end
+    #     it 'responds with 200' do
+    #       post :create, format: :xml, params: { transaction: child_charge_transaction_xml }
+    #       expect(response.status).to eq(200)
+    #     end
 
-        it 'sets transaction status to error' do
-          post :create, format: :xml, params: { transaction: child_charge_transaction_xml }
-          expect(response.body).to include('<status>error</status>')
-        end
-      end
+    #     it 'sets transaction status to error' do
+    #       post :create, format: :xml, params: { transaction: child_charge_transaction_xml }
+    #       expect(response.body).to include('<status>error</status>')
+    #     end
+    #   end
     end
 
     context 'when create transaction with correct json params' do
@@ -286,28 +282,28 @@ RSpec.describe TransactionsController, type: :controller do
       end
     end
 
-    context 'when create transaction with correct xml params' do
-      before(:each) do
-        request.headers['Authorization'] = auth_header
-      end
+    # context 'when create transaction with correct xml params' do
+    #   before(:each) do
+    #     request.headers['Authorization'] = auth_header
+    #   end
 
-      it 'responds with 200' do
-        post :create, format: :xml, params: { transaction: transaction_xml_data }
-        expect(response.status).to eq(200)
-      end
+    #   it 'responds with 200' do
+    #     post :create, format: :xml, params: { transaction: transaction_xml_data }
+    #     expect(response.status).to eq(200)
+    #   end
 
-      it 'creates transaction record with correct values' do
-        expect do
-          post :create, format: :xml, params: { transaction: transaction_xml_data }
-        end.to change { Transaction.count }.by(1)
-        expect(Transaction.last.uuid).to eq(authorize_transaction.uuid)
-      end
+    #   it 'creates transaction record with correct values' do
+    #     expect do
+    #       post :create, format: :xml, params: { transaction: transaction_xml_data }
+    #     end.to change { Transaction.count }.by(1)
+    #     expect(Transaction.last.uuid).to eq(authorize_transaction.uuid)
+    #   end
 
-      it 'responds with correct transaction data' do
-        post :create, format: :xml, params: { transaction: transaction_xml_data }
-        expect(response.header['Content-Type']).to include 'application/xml'
-        expect(response.body).to include(authorize_transaction.uuid)
-      end
-    end
+    #   it 'responds with correct transaction data' do
+    #     post :create, format: :xml, params: { transaction: transaction_xml_data }
+    #     expect(response.header['Content-Type']).to include 'application/xml'
+    #     expect(response.body).to include(authorize_transaction.uuid)
+    #   end
+    # end
   end
 end

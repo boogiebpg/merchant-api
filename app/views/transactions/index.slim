@@ -1,35 +1,32 @@
-.container
-  div class="row justify-content-center"
-    h4 class="mt-4 display-4"
-      'Transactions List
-  - if @transactions.present?
-    div class="row justify-content-center"
-      table class="table table-bordered"
-        thead
+h4 class="mt-4 display-4"
+  'Transactions List
+- if @transactions.present?
+    table class="table table-bordered"
+      thead
+        tr
+          th scope="col" UUID
+          th scope="col" Customer Email
+          th scope="col" Customer Phone
+          th scope="col" Amount
+          th scope="col" Type
+          th scope="col" Status
+          th scope="col" User ID
+          th scope="col" Parent Transaction ID
+          th scope="col" Created At
+      tbody
+        - @transactions.each do |transaction|
           tr
-            th scope="col" UUID
-            th scope="col" Customer Email
-            th scope="col" Customer Phone
-            th scope="col" Amount
-            th scope="col" Type
-            th scope="col" Status
-            th scope="col" User ID
-            th scope="col" Parent Transaction ID
-            th scope="col" Created At
-        tbody
-          - @transactions.each do |transaction|
-            tr
-              td == transaction.uuid
-              td == transaction.customer_email
-              td == transaction.customer_phone
-              td == transaction.amount
-              td == transaction.type
-              td == transaction.status
-              td == transaction.user.id
-              td == transaction.transaction_id
-              td == transaction.created_at
-  - else
-    div class="p-3 mb-2 bg-light text-dark"
-      span class="text-info font-weight-bold"
-        'Welcome!
-      'There are no transactions yet.
+            td == transaction.uuid
+            td == transaction.customer_email
+            td == transaction.customer_phone
+            td == transaction.amount
+            td == transaction.type
+            td == transaction.status
+            td == transaction.user.id
+            td == transaction.transaction_id
+            td == transaction.created_at
+- else
+  div class="p-3 mb-2 bg-light text-dark"
+    span class="text-info font-weight-bold"
+      'Welcome!
+    'There are no transactions yet.
