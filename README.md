@@ -1,6 +1,5 @@
-# Merchant Test
+# Merchant Api
 A couple endpoints to work with transactions, merchant admin panel.
-In this small project 
 
 ### Project Setup
 1. bundle install
